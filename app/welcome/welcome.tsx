@@ -134,7 +134,7 @@ export function Welcome() {
         <p className="mb-4 text-xl font-semibold">下载我们的App</p>
         <div className="flex justify-center space-x-6">
           <a href="/app-release.apk" download className="bg-white text-blue-500 w-16 h-16 flex items-center justify-center rounded-full shadow-md hover:bg-gray-100">安卓</a>
-          <a href="/path/to/ios-app.apk" download className="bg-white text-blue-500 w-16 h-16 flex items-center justify-center rounded-full shadow-md hover:bg-gray-100">iOS</a>
+          <a href="/app-release.apk" download className="bg-white text-blue-500 w-16 h-16 flex items-center justify-center rounded-full shadow-md hover:bg-gray-100">iOS</a>
         </div>
       </div>
       <main className="pt-4 sm:pt-20 pb-20">
