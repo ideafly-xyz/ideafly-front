@@ -61,22 +61,22 @@ export function Welcome() {
 
           {/* 文字按钮 */}
           <span
-            className={`mx-6 text-gray-900 dark:text-gray-200 text-lg ${selectedCategory === 'all' ? 'text-black border-b-2 border-gray-900' : 'text-gray-300'}`}
+            className={`mx-3 text-gray-900 dark:text-gray-200 text-lg ${selectedCategory === 'all' ? 'text-black border-b-2 border-gray-900' : 'text-gray-300'}`}
             onClick={() => setSelectedCategory('all')}
           >
             兼职
           </span>
           <span
-            className={`mx-6 text-gray-900 dark:text-gray-200 text-lg ${selectedCategory === '区块链' ? 'text-black border-b-2 border-gray-900' : 'text-gray-300'}`}
+            className={`mx-3 text-gray-900 dark:text-gray-200 text-lg ${selectedCategory === '区块链' ? 'text-black border-b-2 border-gray-900' : 'text-gray-300'}`}
             onClick={() => setSelectedCategory('区块链')}
           >
-            创业
+            外包
           </span>
           <span
-            className={`mx-6 text-gray-900 dark:text-gray-200 text-lg ${selectedCategory === 'AI' ? 'text-black border-b-2 border-gray-500' : 'text-gray-300'}`}
+            className={`mx-3 text-gray-900 dark:text-gray-200 text-lg ${selectedCategory === 'AI' ? 'text-black border-b-2 border-gray-500' : 'text-gray-300'}`}
             onClick={() => setSelectedCategory('AI')}
           >
-            AI
+            众筹创业
           </span>
 
           {/* 移动端搜索图标 */}
@@ -109,7 +109,7 @@ export function Welcome() {
           <button className="px-4 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700">
             搜索
           </button>
-        </div>
+        </div>        
 
         {/* 右上角按钮 (PC端头像按钮) */}
         <div className="flex items-center space-x-4">
@@ -130,6 +130,13 @@ export function Welcome() {
         </div>
       </header>
       {/* 主内容区域 */}
+      <div className="bg-blue-500 text-white p-8 text-center">
+        <p className="mb-4 text-xl font-semibold">下载我们的App</p>
+        <div className="flex justify-center space-x-6">
+          <a href="/app-release.apk" download className="bg-white text-blue-500 w-16 h-16 flex items-center justify-center rounded-full shadow-md hover:bg-gray-100">安卓</a>
+          <a href="/path/to/ios-app.apk" download className="bg-white text-blue-500 w-16 h-16 flex items-center justify-center rounded-full shadow-md hover:bg-gray-100">iOS</a>
+        </div>
+      </div>
       <main className="pt-4 sm:pt-20 pb-20">
         <div className="max-w-full lg:max-w-4xl mx-auto space-y-4 px-4">
           <ul className="space-y-4">
@@ -214,7 +221,7 @@ export function Welcome() {
           className={`flex flex-col items-center text-[1.2rem] mb-2 ${selected === 'home' ? 'text-gray-900' : 'text-gray-400 dark:text-gray-200'}`}
           onClick={() => setSelected('home')}
         >
-          社区
+          首页
         </button>
         <button
           className={`flex flex-col items-center text-[1.2rem] mb-2 ${selected === 'me' ? 'text-gray-900' : 'text-gray-400 dark:text-gray-200'}`}
