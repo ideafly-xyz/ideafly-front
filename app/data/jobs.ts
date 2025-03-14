@@ -1,101 +1,128 @@
 export const jobs = [
   {
     title: "需要 Rust 开发工程师",
-    description: "正在寻找一名经验丰富的 Rust 开发工程师，负责区块链相关功能的开发和优化。您将参与系统架构设计、性能优化和智能合约开发。要求熟悉 Rust 和相关框架，有区块链开发经验优先。",
-    salaryPerHour: "￥120/小时",
-    budget: "￥20,000",
+    projectDescription: "本项目旨在开发和优化基于区块链的系统功能，您将加入一个专注于去中心化技术的团队，参与构建高性能的区块链应用。项目包括系统架构设计、性能优化以及智能合约的开发与集成。",
+    salaryRange: {
+      perHour: "￥120/小时",
+      totalBudget: "￥20,000"
+    },
+    jobRequirements: [
+      "精通 Rust 编程语言及相关框架",
+      "熟悉区块链开发原理（如公链、私链）",
+      "有智能合约开发经验者优先",
+      "具备良好的代码优化和调试能力",
+      "能够独立完成任务并与团队协作"
+    ],
+    workMode: "远程工作，可选择每周 1-2 次线下会议",
     duration: "2 个月",
     tags: ["区块链", "Rust", "开发"],
-    location: "北京",
-    spent: "￥50,000",
+    location: "北京（主要为远程）",
+    spent: "￥50,000（项目总预算已使用部分）",
     postedTime: new Date(new Date().getTime() - 2 * 60 * 60 * 1000), // 2小时前
   },
   {
     title: "需要 UI/UX 设计师",
-    description: "我们需要一位创意十足的 UI/UX 设计师，为我们设计用户友好的移动端和网页界面。要求能够熟练使用设计工具如 Figma 或 Sketch，能够提供现代、简洁的设计。",
-    salaryPerHour: "￥100/小时",
-    budget: "￥10,000",
+    projectDescription: "本项目致力于为移动端和网页端应用设计直观、现代的用户界面。我们正在开发一款面向大众的工具产品，需要设计师提供创新且用户友好的设计方案，提升用户体验。",
+    salaryRange: {
+      perHour: "￥100/小时",
+      totalBudget: "￥10,000"
+    },
+    jobRequirements: [
+      "熟练使用 Figma、Sketch 或类似设计工具",
+      "具备现代 UI/UX 设计经验",
+      "理解用户体验设计原则",
+      "能够交付高质量的设计原型",
+      "有移动端设计经验者优先"
+    ],
+    workMode: "全远程工作，按里程碑交付设计稿",
     duration: "1 个月",
     tags: ["设计", "UI/UX"],
-    location: "上海",
-    spent: "￥25,000",
+    location: "上海（远程）",
+    spent: "￥25,000（项目总预算已使用部分）",
     postedTime: new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000), // 1天前
   },
   {
     title: "需要智能合约工程师",
-    description: "寻找熟悉 Solidity 的智能合约工程师，参与开发去中心化金融 (DeFi) 应用。要求精通 Solidity 和 EVM，具备审计智能合约的能力。",
-    salaryPerHour: "￥150/小时",
-    budget: "￥30,000",
+    projectDescription: "本项目聚焦于去中心化金融（DeFi）应用的开发，您将负责设计、开发和测试智能合约，确保其安全性和高效性。项目需要与前端和后端团队紧密合作，打造可靠的区块链解决方案。",
+    salaryRange: {
+      perHour: "￥150/小时",
+      totalBudget: "￥30,000"
+    },
+    jobRequirements: [
+      "精通 Solidity 编程语言",
+      "熟悉以太坊虚拟机（EVM）",
+      "具备智能合约审计经验",
+      "了解 DeFi 协议和相关技术",
+      "有团队协作和问题解决能力"
+    ],
+    workMode: "远程工作，每周线上会议汇报进展",
     duration: "3 个月",
     tags: ["区块链", "Solidity", "DeFi"],
-    location: "深圳",
-    spent: "￥40,000",
+    location: "深圳（远程）",
+    spent: "￥40,000（项目总预算已使用部分）",
     postedTime: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000), // 3天前
   },
   {
     title: "需要前端开发工程师",
-    description: "寻找熟悉 React 的前端工程师，开发和维护我们平台的用户界面。要求能够使用 TypeScript，有良好的组件化开发经验。",
-    salaryPerHour: "￥80/小时",
-    budget: "￥15,000",
+    projectDescription: "本项目旨在开发和维护一款基于 React 的用户界面，用于我们的核心平台产品。您将负责组件化开发、界面优化以及与后端 API 的集成，确保用户体验流畅。",
+    salaryRange: {
+      perHour: "￥80/小时",
+      totalBudget: "￥15,000"
+    },
+    jobRequirements: [
+      "熟练掌握 React 和 JavaScript",
+      "熟悉 TypeScript 开发",
+      "具备组件化开发经验",
+      "理解前端性能优化技术",
+      "有 RESTful API 集成经验者优先"
+    ],
+    workMode: "混合工作模式，每周 3 天远程，2 天到岗",
     duration: "1.5 个月",
     tags: ["前端", "React", "TypeScript"],
     location: "杭州",
-    spent: "￥20,000",
+    spent: "￥20,000（项目总预算已使用部分）",
     postedTime: new Date(new Date().getTime() - 5 * 24 * 60 * 60 * 1000), // 5天前
   },
   {
     title: "需要后端开发工程师",
-    description: "需要一名熟练的后端工程师，要求掌握 Node.js 和 MongoDB，能够设计高性能 API 并保障系统稳定性。",
-    salaryPerHour: "￥90/小时",
-    budget: "￥18,000",
+    projectDescription: "本项目需要开发高性能的后端服务，支持我们平台的大规模用户访问。您将负责设计和实现 RESTful API，优化数据库查询，并确保系统的高可用性和稳定性。",
+    salaryRange: {
+      perHour: "￥90/小时",
+      totalBudget: "￥18,000"
+    },
+    jobRequirements: [
+      "熟练使用 Node.js 开发后端服务",
+      "熟悉 MongoDB 或其他 NoSQL 数据库",
+      "有 API 设计和优化经验",
+      "理解微服务架构",
+      "具备故障排查和性能调优能力"
+    ],
+    workMode: "全远程工作，每日线上 stand-up 会议",
     duration: "2 个月",
     tags: ["后端", "Node.js", "API"],
-    location: "广州",
-    spent: "￥30,000",
+    location: "广州（远程）",
+    spent: "￥30,000（项目总预算已使用部分）",
     postedTime: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000), // 7天前
   },
   {
     title: "需要项目经理",
-    description: "我们正在寻找经验丰富的项目经理，负责管理团队的开发进度，确保项目按时交付。需要有敏捷开发经验和优秀的沟通能力。",
-    salaryPerHour: "￥120/小时",
-    budget: "￥25,000",
+    projectDescription: "本项目需要一位项目经理来协调开发团队，确保多个技术模块按时交付。您将负责制定项目计划、跟踪进度、管理风险，并与客户保持良好沟通，推动敏捷开发流程。",
+    salaryRange: {
+      perHour: "￥120/小时",
+      totalBudget: "￥25,000"
+    },
+    jobRequirements: [
+      "具备 3 年以上项目管理经验",
+      "熟悉敏捷开发方法（如 Scrum、Kanban）",
+      "优秀的团队协调和沟通能力",
+      "能够使用项目管理工具（如 Jira、Trello）",
+      "有技术背景者优先"
+    ],
+    workMode: "混合模式，每周 2 天到岗，其余远程",
     duration: "2 个月",
     tags: ["管理", "项目", "敏捷开发"],
     location: "北京",
-    spent: "￥45,000",
+    spent: "￥45,000（项目总预算已使用部分）",
     postedTime: new Date(new Date().getTime() - 10 * 24 * 60 * 60 * 1000), // 10天前
-  },
-  {
-    title: "需要 DevOps 工程师",
-    description: "需要熟悉 Kubernetes 和 Docker 的 DevOps 工程师，优化和维护我们的 CI/CD 流程，保障生产环境稳定。",
-    salaryPerHour: "￥110/小时",
-    budget: "￥20,000",
-    duration: "1.5 个月",
-    tags: ["DevOps", "Kubernetes", "Docker"],
-    location: "成都",
-    spent: "￥35,000",
-    postedTime: new Date(new Date().getTime() - 14 * 24 * 60 * 60 * 1000), // 14天前
-  },
-  {
-    title: "需要数据分析师",
-    description: "我们正在寻找一名数据分析师，熟悉 Python 和 SQL，能够从数据中挖掘商业价值，生成高质量的分析报告。",
-    salaryPerHour: "￥100/小时",
-    budget: "￥15,000",
-    duration: "1 个月",
-    tags: ["数据分析", "Python", "SQL"],
-    location: "武汉",
-    spent: "￥28,000",
-    postedTime: new Date(new Date().getTime() - 20 * 24 * 60 * 60 * 1000), // 20天前
-  },
-  {
-    title: "需要测试工程师",
-    description: "寻找一名测试工程师，负责自动化测试脚本开发和性能测试，保障系统质量。要求熟悉 Selenium 和 JMeter。",
-    salaryPerHour: "￥70/小时",
-    budget: "￥10,000",
-    duration: "1 个月",
-    tags: ["测试", "自动化", "性能测试"],
-    location: "南京",
-    spent: "￥15,000",
-    postedTime: new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000), // 30天前
   },
 ];
