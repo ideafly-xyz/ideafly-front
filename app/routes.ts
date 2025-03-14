@@ -9,6 +9,8 @@ import {
   export default [
     index("./routes/home.tsx"),
     route("about", "./routes/about.tsx"),
+
+    route("weChatRedire","./routes/weChatRedire.tsx"),
   
     layout("./routes/auth/layout.tsx", [
       route("login", "./routes/auth/login.tsx"),

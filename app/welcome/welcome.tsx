@@ -150,27 +150,43 @@ export function Welcome() {
               >
                 ×
               </button>
-              <p className="mb-4 text-2xl font-semibold text-center text-black">
-                下载 ideaFly app
-              </p>
-              <p className="mb-4 text-base text-center text-black">
-                获得完整的应用体验
-              </p>
-              <div className="flex justify-center space-x-6">
-                <a
-                  href="/app-release.apk"
-                  download
-                  className="bg-red-500 text-white font-bold w-24 h-12 flex items-center justify-center rounded-lg shadow-md hover:bg-red-600"
-                >
-                  Android
-                </a>
-                <a
-                  href="/app-release.apk"
-                  download
-                  className="bg-red-500 text-white font-bold w-24 h-12 flex items-center justify-center rounded-lg shadow-md hover:bg-red-600"
-                >
-                  iOS
-                </a>
+
+              {/* 始终显示下载按钮，点击时根据环境判断 */}
+              <div>
+                <p className="mb-4 text-2xl font-semibold text-center text-black">
+                  下载 ideaFly app
+                </p>
+                <p className="mb-4 text-base text-center text-black">
+                  获得完整的应用体验
+                </p>
+                <div className="flex justify-center space-x-6">
+                  <a
+                    href={(() => {
+                      const isBrowser = typeof navigator !== 'undefined';
+                      const isWeChat = isBrowser ? /MicroMessenger/i.test(navigator.userAgent) : false;
+                      return isWeChat
+                        ? '/weChatRedire' // 微信中跳转到新页面
+                        : '/app-release.apk'; // 非微信直接下载
+                    })()}
+                    download={!/MicroMessenger/i.test(typeof navigator !== 'undefined' ? navigator.userAgent : '')}
+                    className="bg-red-500 text-white font-bold w-24 h-12 flex items-center justify-center rounded-lg shadow-md hover:bg-red-600"
+                  >
+                    Android
+                  </a>
+                  <a
+                    href={(() => {
+                      const isBrowser = typeof navigator !== 'undefined';
+                      const isWeChat = isBrowser ? /MicroMessenger/i.test(navigator.userAgent) : false;
+                      return isWeChat
+                        ? '/weChatRedirect' // 微信中跳转到新页面
+                        : '/app-release.apk'; // 非微信直接下载 (假设 iOS 使用 .ipa 文件)
+                    })()}
+                    download={!/MicroMessenger/i.test(typeof navigator !== 'undefined' ? navigator.userAgent : '')}
+                    className="bg-red-500 text-white font-bold w-24 h-12 flex items-center justify-center rounded-lg shadow-md hover:bg-red-600"
+                  >
+                    iOS
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -274,29 +290,29 @@ export function Welcome() {
               {/* 右侧交互按钮 - 覆盖在内容上 */}
               <div className="absolute right-0 bottom-6 flex flex-col items-center space-y-6">
                 {/* 头像和关注按钮 */}
-<div className="flex flex-col items-center relative">
-  <img
-    src="/favicon.svg" // 替换为实际的头像URL或路径
-    alt="User Avatar"
-    className="w-12 h-12 rounded-full border-2 border-gray-500"
-  />
-  <button className="absolute top-9 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600">
-    <svg
-      className="w-3 h-3"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M12 4v16m8-8H4"
-      />
-    </svg>
-  </button>
-</div>
+                <div className="flex flex-col items-center relative">
+                  <img
+                    src="/favicon.svg" // 替换为实际的头像URL或路径
+                    alt="User Avatar"
+                    className="w-12 h-12 rounded-full border-2 border-gray-500"
+                  />
+                  <button className="absolute top-9 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600">
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                  </button>
+                </div>
                 {/* 点赞 */}
                 <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
