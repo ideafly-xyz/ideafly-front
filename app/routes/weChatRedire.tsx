@@ -1,14 +1,13 @@
 export default function WeChatRedirect() {
     return (
       <div className="flex flex-col items-start justify-start h-screen bg-white p-6">
-        {/* Image Placeholder */}
-        <div className="mt-3 w-full">
-          <img
-            src="/arrow.png"
-            alt="WeChat Browser Interface"
-            className="max-w-full h-auto w-1/2 block ml-auto"
-          />
-        </div>
+      <div className="w-full">
+        <img
+          src="/arrow.png"
+          alt="WeChat Browser Interface"
+          className="max-w-full ml-auto"
+        />
+      </div>
         {/* Step 1 */}
         <div className="flex items-center mb-6 w-full mt-3">
           <span className="inline-block w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-4">
