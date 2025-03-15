@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
-// import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import logoDark from './if.svg';
 import logoLight from './if.svg';
-import { jobs } from '../data/jobs'; // 导入jobs数据
+// 导入jobs数据
+import { jobs } from '../data/jobs'; 
 
-function timeAgo(date) {
-  const now = new Date();
-  const diff = (now - date) / 1000; // 秒差
-  if (diff < 60) return `${Math.floor(diff)} 分钟前`;
-  if (diff < 3600) return `${Math.floor(diff / 60)} 小时前`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)} 天前`;
-  return `${Math.floor(diff / 86400)} 天前`;
-}
 
 export function Welcome() {
-  const [selected, setSelected] = useState('home'); // 默认选中首页
-  const [selectedCategory, setSelectedCategory] = useState('all'); // 默认选中全部标签
+  // 默认选中首页
+  const [selected, setSelected] = useState('home'); 
+
+  // 默认选中全部标签
+  const [selectedCategory, setSelectedCategory] = useState('all'); 
 
   // 过滤显示不同的职位数据
   const filteredJobs = jobs.filter((job) => {
     if (selectedCategory === 'all') return true;
-    return job.tags.includes(selectedCategory); // 根据选中的标签筛选职位
+
+    // 根据选中的标签筛选职位
+    return job.tags.includes(selectedCategory); 
   });
 
   // 状态控制弹窗显示/隐藏
-  const [isModalOpen, setIsModalOpen] = useState(true); // 默认打开
+  // 默认打开
+  const [isModalOpen, setIsModalOpen] = useState(true); 
 
   return (
     <>
@@ -165,7 +163,7 @@ export function Welcome() {
                       ((): string => {
                         const isBrowser = typeof navigator !== 'undefined';
                         // const isWeChat = isBrowser && /MicroMessenger/i.test(navigator.userAgent);
-                        return isBrowser ? '/app-release.apk' : '/weChatRedire';
+                        return isBrowser ? '/app-release.apk' : '/app-release.apk';
                       })()
                     }
                     download={
@@ -193,13 +191,19 @@ export function Welcome() {
             </div>
           </div>
         )}
-        <main className="pt-0 sm:pt-20 pb-20">
-          <div className="max-w-full lg:max-w-4xl mx-auto px-4">
-            <div 
-              className="h-screen snap-y snap-mandatory overflow-y-scroll"
+        <main className="">
+          <div className="">
+          <div 
+              className="h-screen snap-y snap-mandatory overflow-y-scroll scrollbar-hide"
               style={{ 
                 scrollBehavior: 'smooth',
-                WebkitOverflowScrolling: 'touch'
+                WebkitOverflowScrolling: 'touch',
+                // 直接添加 Firefox 支持
+                scrollbarWidth: 'none',
+                // 新增关键样式
+                scrollSnapType: 'y mandatory',
+                // 强制在捕捉点停止
+                scrollSnapStop: 'always',  
               }}
             >
               {jobs.map(
@@ -221,13 +225,18 @@ export function Welcome() {
                   <div
                     key={index}
                     className="h-screen snap-start flex items-center justify-center relative bg-white dark:bg-gray-800"
+                    style={{
+                      // 新增子元素捕捉策略
+                      scrollSnapAlign: 'start',
+                      scrollSnapStop: 'always'
+                    }}
                   >
                     <div className="w-full p-6 relative">
                       {/* 职位内容 */}
                       <div className="w-full">
                         {/* 发布信息 */}
                         <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                          {timeAgo(postedTime)} 发布
+                          {`${postedTime} 分钟前`} 发布
                         </p>
                         {/* 标题 */}
                         <h2 
@@ -290,7 +299,7 @@ export function Welcome() {
                       </div>
 
                       {/* 右侧交互按钮 - 覆盖在内容上 */}
-                      <div className="absolute right-0 bottom-6 flex flex-col items-center space-y-6">
+                      <div className="absolute right-2 bottom-6 flex flex-col items-center space-y-6">
                         {/* 头像和关注按钮 */}
                         <div className="flex flex-col items-center relative">
                           <img
@@ -351,7 +360,6 @@ export function Welcome() {
             </div>
           </div>
         </main>
-
       {/* 移动端底部按钮 */}
       <nav className="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 p-4 flex justify-around sm:hidden shadow-lg" style={{ height: '55px' }}>
         <button

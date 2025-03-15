@@ -18,7 +18,6 @@ import {
     ]),
   
     ...prefix("concerts", [
-      index("./routes/concerts/home.tsx"),
       route(":city", "./routes/concerts/city.tsx"),
       route(":city/:id", "./routes/concerts/show.tsx"),
       route("trending", "./routes/concerts/trending.tsx"),

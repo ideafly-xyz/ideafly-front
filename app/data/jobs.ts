@@ -18,7 +18,7 @@ export const jobs = [
     tags: ["区块链", "Rust", "开发"],
     location: "北京（主要为远程）",
     spent: "￥50,000（项目总预算已使用部分）",
-    postedTime: new Date(new Date().getTime() - 2 * 60 * 60 * 1000), // 2小时前
+    postedTime: 2, // 2小时前
   },
   {
     title: "需要 UI/UX 设计师",
@@ -39,7 +39,7 @@ export const jobs = [
     tags: ["设计", "UI/UX"],
     location: "上海（远程）",
     spent: "￥25,000（项目总预算已使用部分）",
-    postedTime: new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000), // 1天前
+    postedTime: 5, // 1天前
   },
   {
     title: "需要智能合约工程师",
@@ -60,7 +60,7 @@ export const jobs = [
     tags: ["区块链", "Solidity", "DeFi"],
     location: "深圳（远程）",
     spent: "￥40,000（项目总预算已使用部分）",
-    postedTime: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000), // 3天前
+    postedTime: 15, // 3天前
   },
   {
     title: "需要前端开发工程师",
@@ -81,7 +81,7 @@ export const jobs = [
     tags: ["前端", "React", "TypeScript"],
     location: "杭州",
     spent: "￥20,000（项目总预算已使用部分）",
-    postedTime: new Date(new Date().getTime() - 5 * 24 * 60 * 60 * 1000), // 5天前
+    postedTime: 30, // 5天前
   },
   {
     title: "需要后端开发工程师",
@@ -102,7 +102,7 @@ export const jobs = [
     tags: ["后端", "Node.js", "API"],
     location: "广州（远程）",
     spent: "￥30,000（项目总预算已使用部分）",
-    postedTime: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000), // 7天前
+    postedTime: 50, // 7天前
   },
   {
     title: "需要项目经理",
@@ -123,6 +123,6 @@ export const jobs = [
     tags: ["管理", "项目", "敏捷开发"],
     location: "北京",
     spent: "￥45,000（项目总预算已使用部分）",
-    postedTime: new Date(new Date().getTime() - 10 * 24 * 60 * 60 * 1000), // 10天前
+    postedTime: 55, // 10天前
   },
 ];
