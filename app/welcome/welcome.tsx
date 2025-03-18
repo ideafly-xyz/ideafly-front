@@ -90,7 +90,7 @@ export function Welcome() {
         </div>
       )}
       
-      <header className="bg-gray-100 py-1">
+      <header className="fixed top-0 left-0 w-full bg-gray-100 py-1 z-20">
         <div className="w-[100px] sm:w-[120px] hidden sm:block">
           <img
             src={logoLight}
@@ -186,14 +186,14 @@ export function Welcome() {
 
       <main
         ref={scrollRef} // 添加 ref 用于控制滑动
-        className="bg-white snap-x snap-mandatory overflow-x-auto scrollbar-hide"
+        className="bg-white snap-x snap-mandatory overflow-x-auto scrollbar-hide pt-10"
         style={{ 
           scrollBehavior: 'smooth',
           WebkitOverflowScrolling: 'touch',
           scrollbarWidth: 'none',
           scrollSnapType: 'x mandatory',
           scrollSnapStop: 'always',
-          height: 'calc(100vh - 3rem)', 
+          height: 'calc(100vh - 0rem)', 
           display: 'flex',
           flexDirection: 'row',
           position: 'relative',
@@ -215,7 +215,7 @@ export function Welcome() {
               likes,
               comments,
               favorites,
-              shares
+              shares,
             },
             index
           ) => (
