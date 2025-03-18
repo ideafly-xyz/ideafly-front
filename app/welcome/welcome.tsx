@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router";
 import logoDark from './if.svg';
 import logoLight from './if.svg';
@@ -12,6 +12,8 @@ export function Welcome() {
   const [androidHref, setAndroidHref] = useState('/app-release.apk');
   const [iosDownload, setIosDownload] = useState(false);
   const [iosHref, setIosHref] = useState('/app-release.apk');
+
+  const scrollRef = useRef(null); // 用于控制滑动
 
   useEffect(() => {
     const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
@@ -27,6 +29,19 @@ export function Welcome() {
   });
 
   const [isModalOpen, setIsModalOpen] = useState(true);
+
+  // 左右滑动函数
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+    }
+  };
 
   return (
     <>
@@ -170,6 +185,7 @@ export function Welcome() {
       </header>
 
       <main
+        ref={scrollRef} // 添加 ref 用于控制滑动
         className="bg-white snap-x snap-mandatory overflow-x-auto scrollbar-hide"
         style={{ 
           scrollBehavior: 'smooth',
@@ -196,7 +212,7 @@ export function Welcome() {
               location, 
               spent, 
               postedTime,
-              likes,      // 新增字段
+              likes,
               comments,
               favorites,
               shares
@@ -279,7 +295,28 @@ export function Welcome() {
                 </div>
 
                 {/* 每个帖子独立的按钮组 */}
-                <div className="absolute bottom-16 right-2 flex flex-col space-y-6 z-10">
+                <div className="absolute bottom-16 right-1 flex flex-col space-y-6 z-10">
+                  {/* 左右箭头按钮 */}
+                  <div className="flex space-x-1.5 mb-0">
+                    <button
+                      onClick={scrollLeft}
+                      className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center justify-center shadow-md transition-colors duration-200"
+                    >
+                      <svg className="w-5 h-5 text-gray-500 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                      </svg>
+                    </button>
+                    <button
+                      onClick={scrollRight}
+                      className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center justify-center shadow-md transition-colors duration-200"
+                    >
+                      <svg className="w-5 h-5 text-gray-500 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* 头像按钮 */}
                   <div className="flex flex-col items-center relative">
                     <img
                       src="/favicon.svg"
@@ -303,6 +340,8 @@ export function Welcome() {
                       </svg>
                     </button>
                   </div>
+
+                  {/* 其他交互按钮 */}
                   <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400">
                     <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="gray" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
