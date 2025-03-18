@@ -180,7 +180,7 @@ export function Welcome() {
           height: 'calc(100vh - 3rem)', 
           display: 'flex',
           flexDirection: 'row',
-          position: 'relative', // 确保 main 是相对定位
+          position: 'relative',
         }}
       >
         {jobs.map(
@@ -195,7 +195,11 @@ export function Welcome() {
               tags, 
               location, 
               spent, 
-              postedTime 
+              postedTime,
+              likes,      // 新增字段
+              comments,
+              favorites,
+              shares
             },
             index
           ) => (
@@ -273,61 +277,61 @@ export function Welcome() {
                     ))}
                   </div>
                 </div>
+
+                {/* 每个帖子独立的按钮组 */}
+                <div className="absolute bottom-16 right-2 flex flex-col space-y-6 z-10">
+                  <div className="flex flex-col items-center relative">
+                    <img
+                      src="/favicon.svg"
+                      alt="User Avatar"
+                      className="w-14 h-14 rounded-full border-2 border-gray-500"
+                    />
+                    <button className="absolute top-11 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600">
+                      <svg
+                        className="w-3 h-3"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M12 4v16m8-8H4"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400">
+                    <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="gray" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span className="text-sm">{likes || 0}</span>
+                  </button>
+                  <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
+                    <svg className="w-10 h-10" fill="none" stroke="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                    </svg>
+                    <span className="text-sm">{comments || 0}</span>
+                  </button>
+                  <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-yellow-500 dark:hover:text-yellow-400">
+                    <svg className="w-10 h-10" fill="none" stroke="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.915a1 1 0 00.95-.69l1.519-4.674z"></path>
+                    </svg>
+                    <span className="text-sm">{favorites || 0}</span>
+                  </button>
+                  <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400">
+                    <svg className="w-10 h-10" fill="" stroke="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m-12 5H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                    <span className="text-sm">{shares || 0}</span>
+                  </button>
+                </div>
               </div>
             </div>
           )
         )}
-
-        {/* 固定在右下角的按钮 */}
-        <div className="fixed bottom-16 right-2 flex flex-col space-y-6 z-10">
-          <div className="flex flex-col items-center relative">
-            <img
-              src="/favicon.svg"
-              alt="User Avatar"
-              className="w-14 h-14 rounded-full border-2 border-gray-500"
-            />
-            <button className="absolute top-11 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600">
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
-            </button>
-          </div>
-          <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400">
-            <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="gray" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-            </svg>
-            <span className="text-sm">123</span>
-          </button>
-          <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
-            <svg className="w-10 h-10" fill="none" stroke="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-            </svg>
-            <span className="text-sm">45</span>
-          </button>
-          <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-yellow-500 dark:hover:text-yellow-400">
-            <svg className="w-10 h-10" fill="none" stroke="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.915a1 1 0 00.95-.69l1.519-4.674z"></path>
-            </svg>
-            <span className="text-sm">67</span>
-          </button>
-          <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400">
-            <svg className="w-10 h-10" fill="" stroke="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m-12 5H4m0 0l4 4m-4-4l4-4"></path>
-            </svg>
-            <span className="text-sm">28</span>
-          </button>
-        </div>
       </main>
 
       <div className="bg-gray-100 fixed bottom-0 sm:hidden flex items-center justify-between w-full px-6">
