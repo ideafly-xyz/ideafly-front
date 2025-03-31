@@ -7,13 +7,16 @@ import { jobs } from '../data/jobs';
 export function Welcome() {
   const [selected, setSelected] = useState('home');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  
   const [androidDownload, setAndroidDownload] = useState(false);
   const [androidHref, setAndroidHref] = useState('/app-release.apk');
   const [iosDownload, setIosDownload] = useState(false);
   const [iosHref, setIosHref] = useState('/app-release.apk');
-
-  const scrollRef = useRef(null); // 用于控制滑动
+  const [isCommentOpen, setIsCommentOpen] = useState(false);
+  const [currentJobIndex, setCurrentJobIndex] = useState(null);
+  const [newComment, setNewComment] = useState('');
+  
+  const scrollRef = useRef(null);
+  const commentRef = useRef(null);
 
   useEffect(() => {
     const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
@@ -30,7 +33,6 @@ export function Welcome() {
 
   const [isModalOpen, setIsModalOpen] = useState(true);
 
-  // 左右滑动函数
   const scrollLeft = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
@@ -40,6 +42,26 @@ export function Welcome() {
   const scrollRight = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+    }
+  };
+
+  const openComments = (index) => {
+    setCurrentJobIndex(index);
+    setIsCommentOpen(true);
+  };
+
+  const closeComments = () => {
+    setIsCommentOpen(false);
+    setCurrentJobIndex(null);
+    setNewComment('');
+  };
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (newComment.trim() && currentJobIndex !== null) {
+      // 这里可以添加实际的评论提交逻辑
+      console.log(`New comment for job ${currentJobIndex}: ${newComment}`);
+      setNewComment('');
     }
   };
 
@@ -89,7 +111,58 @@ export function Welcome() {
           </div>
         </div>
       )}
-      
+
+      {isCommentOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex flex-col justify-end"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeComments();
+          }}
+        >
+          <div 
+            ref={commentRef}
+            className="bg-white w-full h-[60vh] rounded-t-2xl flex flex-col animate-slide-up"
+            style={{ maxHeight: '60vh' }}
+          >
+            <div className="flex justify-between items-center p-4 border-b">
+              <span className="font-semibold">
+                {currentJobIndex !== null ? `${jobs[currentJobIndex].comments || 0} 条评论` : '评论'}
+              </span>
+              <button onClick={closeComments} className="text-gray-500">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-4">
+              <div className="text-gray-500 text-center py-4">
+                暂无评论，快来发表第一条评论吧！
+              </div>
+            </div>
+
+            <form onSubmit={handleCommentSubmit} className="p-4 border-t flex items-center gap-2">
+              <input
+                type="text"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder="添加评论..."
+                className="flex-1 p-2 rounded-full border border-gray-300 focus:outline-none"
+              />
+              <button
+                type="submit"
+                disabled={!newComment.trim()}
+                className={`p-2 rounded-full ${newComment.trim() ? 'text-blue-500' : 'text-gray-400'}`}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
       <header className="fixed top-0 left-0 w-full bg-gray-100 py-1 z-20">
         <div className="w-[100px] sm:w-[120px] hidden sm:block">
           <img
@@ -185,7 +258,7 @@ export function Welcome() {
       </header>
 
       <main
-        ref={scrollRef} // 添加 ref 用于控制滑动
+        ref={scrollRef}
         className="bg-white snap-x snap-mandatory overflow-x-auto scrollbar-hide pt-10"
         style={{ 
           scrollBehavior: 'smooth',
@@ -228,9 +301,7 @@ export function Welcome() {
                 height: 'calc(100vh - 3rem)',
               }}
             >
-              {/* 职位内容容器 */}
               <div className="w-full h-full relative">
-                {/* 滚动内容 */}
                 <div
                   className="w-full px-3 py-1 overflow-y-auto absolute top-0 left-0"
                   style={{ 
@@ -294,9 +365,7 @@ export function Welcome() {
                   </div>
                 </div>
 
-                {/* 每个帖子独立的按钮组 */}
                 <div className="absolute bottom-16 right-1 flex flex-col space-y-6 z-10">
-                  {/* 左右箭头按钮 */}
                   <div className="flex space-x-1.5 mb-0">
                     <button
                       onClick={scrollLeft}
@@ -316,7 +385,6 @@ export function Welcome() {
                     </button>
                   </div>
 
-                  {/* 头像按钮 */}
                   <div className="flex flex-col items-center relative">
                     <img
                       src="/favicon.svg"
@@ -341,25 +409,30 @@ export function Welcome() {
                     </button>
                   </div>
 
-                  {/* 其他交互按钮 */}
                   <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400">
                     <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="gray" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                     </svg>
                     <span className="text-sm">{likes || 0}</span>
                   </button>
-                  <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
+
+                  <button 
+                    onClick={() => openComments(index)}
+                    className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                  >
                     <svg className="w-10 h-10" fill="none" stroke="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
                     </svg>
                     <span className="text-sm">{comments || 0}</span>
                   </button>
+
                   <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-yellow-500 dark:hover:text-yellow-400">
                     <svg className="w-10 h-10" fill="none" stroke="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.915a1 1 0 00.95-.69l1.519-4.674z"></path>
                     </svg>
                     <span className="text-sm">{favorites || 0}</span>
                   </button>
+
                   <button className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400">
                     <svg className="w-10 h-10" fill="" stroke="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m-12 5H4m0 0l4 4m-4-4l4-4"></path>
