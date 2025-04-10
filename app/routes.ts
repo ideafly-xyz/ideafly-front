@@ -10,6 +10,8 @@ import {
     index("./routes/home.tsx"),
     route("about", "./routes/about.tsx"),
 
+    route("mind", "./routes/mind.tsx"),
+
     route("weChatRedire","./routes/weChatRedire.tsx"),
   
     layout("./routes/auth/layout.tsx", [

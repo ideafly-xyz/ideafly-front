@@ -453,12 +453,13 @@ export function Welcome() {
         >
           首页
         </button>
-        <button
-          className={`text-[1.2rem] ${selected === 'shop' ? 'text-black' : 'text-gray-400 dark:text-gray-200'}`}
-          onClick={() => setSelected('shop')}
-        >
-          商城
-        </button>
+        <Link
+        to="/mind"
+        className={`text-[1.2rem] ${selected === 'shop' ? 'text-black' : 'text-gray-400 dark:text-gray-200'}`}
+        onClick={() => setSelected('shop')}
+      >
+        商城
+      </Link>
         <Link to="/login" className="text-white">
           <img
             src="./plus.svg"
